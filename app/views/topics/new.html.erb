@@ -1,0 +1,16 @@
+<h1>New Topic</h1>
+
+<% if @topic.errors.any? %>
+	<ul class = "list-group">
+		<% @topic.errors.full_messages.each do |message| %>
+		<li class = "list-group-item list-group-item-danger"><%= message %> </li>
+		<% end %>
+	</ul>
+
+<% end %>
+
+<%= form_for @topic do |t| %>
+
+	Title: <%= t.text_field :title, class: "form-control" %>
+	<%= t.submit %>
+<% end %>

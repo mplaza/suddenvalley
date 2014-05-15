@@ -1,0 +1,10 @@
+<h1>Topics#index</h1>
+<p>Find me in app/views/topics/index.html.erb</p>
+There are <%= @topics.count %> topics. <br />
+
+<% @topics.each do |t| %>
+	
+	<div> <%= link_to t.title, topic_path(t) %> posts: <%= t.posts.count %> </div><br />
+<% end %>
+<br /> <br />
+<%= link_to 'new topic', new_topic_path %>

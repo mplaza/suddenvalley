@@ -1,0 +1,11 @@
+<%= @topic.title %> <br />
+
+There are <%= @topic.posts.count %> posts. <br />
+
+<% @topic.posts.each do |tt| %>
+<div> <%= tt.title %> : <%= tt.content %> <%= link_to 'details', topic_post_path(@topic, tt) %> </div> <br />
+<% end %>
+
+this is the topic id <%= @topic.id %>
+
+<%= link_to 'new post', new_topic_post_path(@topic) %>
