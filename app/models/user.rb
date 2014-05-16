@@ -4,8 +4,10 @@ class User
   field :email, type: String
   field :password_digest, type: String
   has_many :posts
+  has_one :profile
 
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create
+  validates_length_of :password, minimum: 6
 
   def password
     @password

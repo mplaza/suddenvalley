@@ -2,8 +2,8 @@
 
 <% @topic.posts.each do |tt| %>
 	<h4><%= tt.title %></h4> 
-	<p><%= tt.content %></p>
-	<%= link_to 'details', topic_post_path(@topic, tt),:class =>"btn btn-info"  %> 
+	<%= tt.content %>
+	<%= link_to 'details', topic_post_path(@topic, tt),:class =>"btn btn-info btn-xs"  %> 
 <% end %>
 
 <br /><br />

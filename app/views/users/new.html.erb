@@ -9,10 +9,8 @@
 
 <% end %>
 
-<div class="form-inline" role="form">
-<%= form_for @user do |f| %>
-  Email: <%= f.text_field :email, class: "form-control" %>
-  Password: <%= f.password_field :password, class: "form-control" %>
-  <%= f.submit 'Sign Up', class: "btn btn-lg btn-success"%>
+<%= bootstrap_form_for @user do |f| %>
+<%= f.text_field :email, class: "form-control" %>
+<%= f.password_field :password, class: "form-control" %>
+<%= f.submit 'Sign Up', class: "btn btn-lg btn-success"%>
 <% end %>
-</div>

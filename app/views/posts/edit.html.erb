@@ -1,11 +1,12 @@
 <h1>Edit Post</h1>
 <h2><%= @post.title %></h2>
 
-<%= form_for @post, url: {action: "update"} do |f| %>
+<%= bootstrap_form_for @post, url: {action: "update"} do |f| %>
 <%= f.hidden_field :topic_id, :value => @topic.id %>
-Title: <%= f.text_field :title %> <br />
-Content: <%= f.text_field :content %>
+<%= f.text_field :title %> <br />
+<%= f.text_area :content %>
 
-<%= f.submit %>
+<%= f.submit 'Update', class: "btn btn-lg btn-warning" %>
+
 
 <% end %>

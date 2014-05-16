@@ -1,0 +1,13 @@
+<h1>Profile</h1>
+
+
+<%= bootstrap_form_for @profile do |f| %>
+
+	<%= f.text_field :username %>
+	<%= f.text_field :location %>
+	<%= f.text_area :bio %>
+	<%= f.hidden_field :user_id, :value => current_user.id %>
+
+	<%= f.submit 'Create Profile', class: "btn btn-lg btn-success" %>
+	
+<% end %>

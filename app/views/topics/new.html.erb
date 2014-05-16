@@ -9,8 +9,8 @@
 
 <% end %>
 
-<%= form_for @topic do |t| %>
+<%= bootstrap_form_for @topic do |t| %>
 
-	Title: <%= t.text_field :title, class: "form-control" %>
-	<%= t.submit %>
+	<%= t.text_field :title, class: "form-control" %>
+	<%= t.submit 'Create Topic', class: "btn btn-lg btn-success" %>
 <% end %>
