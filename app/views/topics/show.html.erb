@@ -1,11 +1,12 @@
-<%= @topic.title %> <br />
-
-There are <%= @topic.posts.count %> posts. <br />
+<h1><%= @topic.title %> (<%= @topic.posts.count %>) </h1> 
 
 <% @topic.posts.each do |tt| %>
-<div> <%= tt.title %> : <%= tt.content %> <%= link_to 'details', topic_post_path(@topic, tt) %> </div> <br />
+	<h4><%= tt.title %></h4> 
+	<p><%= tt.content %></p>
+	<%= link_to 'details', topic_post_path(@topic, tt),:class =>"btn btn-info"  %> 
 <% end %>
 
-this is the topic id <%= @topic.id %>
+<br /><br />
+<%= link_to 'new post', new_topic_post_path(@topic), :class =>"btn btn-success" %>
 
-<%= link_to 'new post', new_topic_post_path(@topic) %>
+

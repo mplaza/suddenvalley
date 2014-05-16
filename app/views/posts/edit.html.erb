@@ -1,5 +1,5 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<h1>Edit Post</h1>
+<h2><%= @post.title %></h2>
 
 <%= form_for @post, url: {action: "update"} do |f| %>
 <%= f.hidden_field :topic_id, :value => @topic.id %>

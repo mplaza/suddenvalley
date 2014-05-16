@@ -12,6 +12,7 @@
 
 <%= form_for @post, url: {action: "create"} do |f| %>
 <%= f.hidden_field :topic_id, :value => @topic.id %>
+<%= f.hidden_field :user_id, :value => current_user.id %>
 Title: <%= f.text_field :title, class: "form-control" %> <br />
 Content: <%= f.text_field :content, class: "form-control" %>
 
