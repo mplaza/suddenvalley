@@ -1,10 +1,19 @@
 <h1><%= @topic.title %> (<%= @topic.posts.count %>) </h1> 
 
-<% @topic.posts.each do |tt| %>
+<% @posts.each do |tt| %>
 	<h4><%= tt.title %></h4> 
-	<%= tt.content %>
+	<% if Profile.where(:user_id => tt.user_id)[0] != nil %>
+		<% @username = Profile.where(:user_id => tt.user_id)[0].username %>
+		<% @prof_id = Profile.where(:user_id => tt.user_id)[0].id %>
+	<% else %>
+		<% @username = 'anonymous' %>
+	<% end %>
+	<%= @username %>: <%= tt.content %>
+	<%= link_to 'user profile', profile_path(@prof_id) %> 
 	<%= link_to 'details', topic_post_path(@topic, tt),:class =>"btn btn-info btn-xs"  %> 
 <% end %>
+
+
 
 <br /><br />
 <%= link_to 'new post', new_topic_post_path(@topic), :class =>"btn btn-success" %>

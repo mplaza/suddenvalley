@@ -1,2 +1,12 @@
-<h1>Profiles#edit</h1>
-<p>Find me in app/views/profiles/edit.html.erb</p>
+<h1>Edit Profile</h1>
+
+<%= bootstrap_form_for @profile[0] do |f| %>
+
+	<%= f.text_field :username %>
+	<%= f.text_field :location %>
+	<%= f.text_area :bio %>
+	<%= f.hidden_field :user_id, :value => current_user.id %>
+
+	<%= f.submit 'Update Profile', class: "btn btn-lg btn-warning" %>
+	
+<% end %>

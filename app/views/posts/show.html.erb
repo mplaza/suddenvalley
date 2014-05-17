@@ -1,15 +1,9 @@
 <h1><%= @post.title %></h1>
-
-<p> <%= @post.content %> </p>
-
-in: <%= @topic.title %>
-
-<%= User.find(session[:remember_token]).id %>
-<%= @post.user_id %>
+<p>posted by: <%= @profile[0].username %> </p>
+<p>in: <%= @topic.title %></p>
+<h3> <%= @post.content %> </h3>
 
 <br /><br />
-
-
 <%= link_to 'Edit', edit_topic_post_path(@topic, @post), :class =>"btn btn-warning" %>
 <%= link_to 'Delete', topic_post_path(@topic, @post), method: :delete, data: {confirm: "Are you sure you want to delete this permanently?"}, :class =>"btn btn-danger" %>
 

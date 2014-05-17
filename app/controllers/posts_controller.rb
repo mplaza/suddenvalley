@@ -21,6 +21,7 @@ before_action :check_right_user, :only =>[:edit, :destroy]
   def show
     @topic = Topic.find(params[:topic_id])
     @post = Post.find(params[:id])
+    @profile = Profile.where(:user_id => @post.user_id)
   end
 
   def edit
