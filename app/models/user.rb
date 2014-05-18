@@ -3,11 +3,13 @@ class User
   include Mongoid::Document
   field :email, type: String
   field :password_digest, type: String
+  field :notoffending, type: Boolean
   has_many :posts
   has_one :profile
 
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create
   validates_length_of :password, minimum: 6
+  validates_inclusion_of :notoffending, :in => [true], message: ": You can't offending anyone here"
 
   def password
     @password

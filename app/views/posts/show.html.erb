@@ -1,7 +1,15 @@
 <h1><%= @post.title %></h1>
-<p>posted by: <%= @profile[0].username %> </p>
-<p>in: <%= @topic.title %></p>
-<h3> <%= @post.content %> </h3>
+<p>It's now: <%= Time.new.inspect %></p>
+<% @post.created_at.to_s.split(" ") %>
+<p>posted at <%= @post.created_at %> 
+<% if @profile[0] != nil %>
+	by <%= @profile[0].username %> (<%= link_to 'profile', profile_path(@profile[0].id) %>)
+	<% else %>
+	by 'anonymous'
+<% end %>
+in <%= @topic.title %></p>
+
+<h4> <%= @post.content %> </h4>
 
 <br /><br />
 <%= link_to 'Edit', edit_topic_post_path(@topic, @post), :class =>"btn btn-warning" %>

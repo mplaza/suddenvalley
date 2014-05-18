@@ -8,8 +8,15 @@
 	<% else %>
 		<% @username = 'anonymous' %>
 	<% end %>
-	<%= @username %>: <%= tt.content %>
-	<%= link_to 'user profile', profile_path(@prof_id) %> 
+		<% if Profile.where(:user_id => tt.user_id)[0] != nil %>
+		<%= link_to profile_path(@prof_id) do%> 
+			<%= @username %>
+		<% end %>
+	<% else %>
+		<%= @username %>
+	<% end %>: 
+	<%= tt.content %>
+
 	<%= link_to 'details', topic_post_path(@topic, tt),:class =>"btn btn-info btn-xs"  %> 
 <% end %>
 

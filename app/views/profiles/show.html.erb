@@ -1,6 +1,8 @@
-<h1><%= @profile[0].username %>'s profile</h1>
+<h1><%= @profile.username %>'s profile</h1>
 
-<p>Location: <%= @profile[0].location %></p>
-<p>Username: <%= @profile[0].bio %></p>
+<p>Location: <%= @profile.location %></p>
+<p>Username: <%= @profile.bio %></p>
 
-<%= link_to 'Edit', edit_profile_path(profile_id), :class =>"btn btn-warning" %>
+<% if @profile.id == profile_id %>
+<%= link_to 'Edit', edit_profile_path(@profile.id), :class =>"btn btn-warning" %>
+<% end %>

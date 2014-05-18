@@ -1,4 +1,6 @@
 class ProfilesController < ApplicationController
+
+
   def new
   	@profile = Profile.new
   	@user = User.find(session[:remember_token])
@@ -15,8 +17,7 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @current_user = User.find(session[:remember_token])
-    @profile = Profile.where(:user_id => @current_user.id)
+   @profile = Profile.find(params[:id])
   end
 
   def edit

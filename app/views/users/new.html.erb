@@ -1,5 +1,5 @@
 <h1>Sign Up</h1>
-
+<h3>You'll remain anonymous unless you choose to complete a profile. </h3>
 <% if @user.errors.any? %>
 	<ul class = "list-group">
 		<% @user.errors.full_messages.each do |message| %>
@@ -12,5 +12,7 @@
 <%= bootstrap_form_for @user do |f| %>
 <%= f.text_field :email, class: "form-control" %>
 <%= f.password_field :password, class: "form-control" %>
+I solemnly swear that I won't be trying to offend anyone here (sexually). 
+<%= f.check_box :notoffending%>
 <%= f.submit 'Sign Up', class: "btn btn-lg btn-success"%>
 <% end %>
