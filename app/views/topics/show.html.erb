@@ -1,4 +1,4 @@
-<h1><%= @topic.title %> 
+<p><h1><%= @topic.title %> 
 	<small><small><%= @votes.count %> points</small>
 	<%= link_to upvote_topic_path(@topic),:class =>"btn btn-xs btn-primary", method: :post do%>
 		<span class="glyphicon glyphicon-thumbs-up"></span>
@@ -6,20 +6,21 @@
 	</h1>
 
 <h4><%= @topic.content %>
-
-
-<h3> comments <small>(<%= @topic.posts.count %>)</small></h3>
+</p>
+<div class="panel panel-default">
+<div class="panel-heading"> comments <small>(<%= @topic.posts.count %>)</small></div>
+<div class = "panel-body">
+<div class = "container-fluid">
 <% if @posts.count <1 %>
 <p> be the first to comment on this story </p>
 <% else %>
 <% @posts.each do |tt| %>
-	<% @postvote = Postvote.where(:post_id => tt.id) %>
+	<p><% @postvote = Postvote.where(:post_id => tt.id) %>
 	<h4><%= tt.title %> 
 		<small><%= @postvote.count %> points <%= link_to upvote_topic_post_path(@topic, tt),:class =>"btn btn-xs btn-primary", method: :post do%>
 			<span class="glyphicon glyphicon-thumbs-up"></span>
 		<% end %>
-	</h4> 
-	<small>
+	<br />
 	<% if Profile.where(:user_id => tt.user_id)[0] != nil %>
 		<% @username = Profile.where(:user_id => tt.user_id)[0].username %>
 		<% @prof_id = Profile.where(:user_id => tt.user_id)[0].id %>
@@ -54,16 +55,22 @@
 		<%= Time.new.utc.year - tt.created_at.to_s.split(/[^0-9]+/)[0].to_i %> years ago 
 		<% end %> 
 		</small>
-		<p><%= tt.content %></p>
+		</h4>
+		<h5><%= tt.content %></h5>
+
 
 	<%= link_to 'details', topic_post_path(@topic, tt),:class =>"btn btn-info btn-xs"  %> 
+	<br></br>
+	</p>
 <% end %>
+
+<% end %>
+
+</div>
 <br />
-<% end %>
-
-
-
-<br /><br />
 <%= link_to 'new comment', new_topic_post_path(@topic), :class =>"btn btn-success" %>
+</div>
+
+</div>
 
 

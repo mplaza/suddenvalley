@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   def index
-    @topics = Topic.desc(:created_at).limit(5)
+    @topics = Topic.where(:created_at.gte => (Date.today - 5)).sort_by{|topic| topic.votes.size }.reverse
   end
 
   def new
@@ -30,7 +30,7 @@ class TopicsController < ApplicationController
   end
   def show
     @topic = Topic.find(params[:id])
-    @posts = Post.where(:topic_id => @topic.id)
+    @posts = Post.where(:topic_id => @topic.id).where(:created_at.gte => (Date.today - 5)).sort_by{|post| post.postvotes.size }.reverse
     @votes = Vote.where(:topic_id => @topic.id)
     
   end
