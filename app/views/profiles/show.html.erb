@@ -8,7 +8,9 @@
 <% end %>
 <br></br>
 <h3> Recent Activity </h3>
-<h4> Topics </h4>
+
+<h3> Topics </h3>
+
 <% @topics.each do |p|%>
 	<p>
 	<h4><%= p.title %><br /><small><%= p.votes.count %> votes </small></h4>
@@ -18,7 +20,9 @@
 	<% end %>
 	</p>
 <% end %>
-<h4> Comments </h4>
+<br></br>
+<h3> Comments </h3>
+
 <% @posts.each do |p|%>
 	<p>
 	<h4><%= p.title %><br /><small><%= p.postvotes.count %> votes on <%= p.created_at %> in <%= p.topic.title %></small></h4>
