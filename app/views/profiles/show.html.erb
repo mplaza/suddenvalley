@@ -12,8 +12,10 @@
 <h3> Topics </h3>
 
 <% @topics.each do |p|%>
-	<p>
-	<h4><%= p.title %><br /><small><%= p.votes.count %> votes </small></h4>
+	<p><%= link_to topic_path(p) do %>
+	<h4><%= p.title %>
+	<%end%>
+	<br /><small><%= p.votes.count %> votes </small></h4>
 	<%= p.content %>
 	<% if @profile.id == profile_id %>
 		<%= link_to 'Edit', edit_topic_path(p), :class =>"btn btn-warning btn-xs" %>
@@ -24,8 +26,10 @@
 <h3> Comments </h3>
 
 <% @posts.each do |p|%>
-	<p>
-	<h4><%= p.title %><br /><small><%= p.postvotes.count %> votes on <%= p.created_at %> in <%= p.topic.title %></small></h4>
+	<p><%= link_to topic_post_path(p.topic, p) do %>
+	<h4><%= p.title %>
+	<% end %>
+	<br /><small><%= p.postvotes.count %> votes on <%= p.created_at %> in <%= p.topic.title %></small></h4>
 	<%= p.content %>
 	<% if @profile.id == profile_id %>
 		<%= link_to 'Edit', edit_topic_post_path(p.topic, p), :class =>"btn btn-warning btn-xs" %>
