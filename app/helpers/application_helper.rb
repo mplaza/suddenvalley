@@ -1,6 +1,8 @@
 module ApplicationHelper
 	def current_user
+      if session[:remember_token] 
     	@current_user ||= session[:remember_token] && User.find(session[:remember_token])
+      end 
   	end
   	def user_name
       if current_user
