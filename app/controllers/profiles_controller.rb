@@ -18,6 +18,7 @@ class ProfilesController < ApplicationController
 
   def show
    @profile = Profile.find(params[:id])
+   @posts = Post.where(:user_id => @profile.user_id).desc(:created_at)
   end
 
   def edit

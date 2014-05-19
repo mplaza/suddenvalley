@@ -1,8 +1,19 @@
 <h1><%= @profile.username %>'s profile</h1>
 
-<p>Location: <%= @profile.location %></p>
-<p>Username: <%= @profile.bio %></p>
+<p><strong>Location:</strong> <%= @profile.location %></p>
+<p><strong>Bio:</strong> <%= @profile.bio %></p>
 
 <% if @profile.id == profile_id %>
 <%= link_to 'Edit', edit_profile_path(@profile.id), :class =>"btn btn-warning" %>
+<% end %>
+<br></br>
+<h3> Recent Posts </h3>
+<% @posts.each do |p|%>
+	<p>
+	<h4><%= p.title %><br /><small><%= p.postvotes.count %> votes on <%= p.created_at %> in <%= p.topic.title %></small></h4>
+	<%= p.content %>
+	<% if @profile.id == profile_id %>
+		<%= link_to 'Edit', edit_topic_post_path(p.topic, p), :class =>"btn btn-warning btn-xs" %>
+	<% end %>
+	</p>
 <% end %>
