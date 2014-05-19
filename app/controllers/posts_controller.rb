@@ -12,7 +12,7 @@ before_action :check_right_user, :only =>[:edit, :destroy]
     @topic = Topic.find(params[:topic_id])
     @post = Post.create(params.require(:post).permit(:title, :content, :topic_id, :user_id))
     if @post.save
-      redirect_to topics_path
+      redirect_to topic_path(@topic)
     else 
       render 'new'
     end
