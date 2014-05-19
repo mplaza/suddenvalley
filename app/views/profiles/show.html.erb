@@ -7,7 +7,18 @@
 <%= link_to 'Edit', edit_profile_path(@profile.id), :class =>"btn btn-warning" %>
 <% end %>
 <br></br>
-<h3> Recent Posts </h3>
+<h3> Recent Activity </h3>
+<h4> Topics </h4>
+<% @topics.each do |p|%>
+	<p>
+	<h4><%= p.title %><br /><small><%= p.votes.count %> votes </small></h4>
+	<%= p.content %>
+	<% if @profile.id == profile_id %>
+		<%= link_to 'Edit', edit_topic_path(p), :class =>"btn btn-warning btn-xs" %>
+	<% end %>
+	</p>
+<% end %>
+<h4> Comments </h4>
 <% @posts.each do |p|%>
 	<p>
 	<h4><%= p.title %><br /><small><%= p.postvotes.count %> votes on <%= p.created_at %> in <%= p.topic.title %></small></h4>
