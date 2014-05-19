@@ -1,5 +1,5 @@
 SuddenValleyApp::Application.routes.draw do
-  root 'topics#index'
+  root 'users#new'
   resources :topics do
     resources :posts do
       member do
