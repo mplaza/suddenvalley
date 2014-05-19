@@ -4,6 +4,7 @@ class Topic
   field :title, type: String
   field :content, type: String
   has_many :posts
+  belongs_to :tag
   has_many :votes
   belongs_to :user
   validates_presence_of :title

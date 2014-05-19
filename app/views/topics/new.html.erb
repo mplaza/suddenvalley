@@ -14,5 +14,6 @@
 	<%= t.text_field :title, class: "form-control" %>
 	<%= t.text_field :content, class: "form-control" %>
 	<%= t.hidden_field :user_id, :value => current_user.id %>
+	<%= t.collection_select :tag_id, @tags, :id, :description %>
 	<%= t.submit 'Create Topic', class: "btn btn-lg btn-success" %>
 <% end %>

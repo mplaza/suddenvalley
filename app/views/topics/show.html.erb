@@ -2,6 +2,9 @@
 	<small><small><%= @votes.count %> points</small>
 	<%= link_to upvote_topic_path(@topic),:class =>"btn btn-sm btn-primary", method: :post do%>
 		<span class="glyphicon glyphicon-thumbs-up"></span>
+	<% end %> 
+	<% @tags.each do |t| %>
+		<span class="label label-info"><%= t.description %></span>
 	<% end %></small>
 	</h1>
 

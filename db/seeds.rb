@@ -11,3 +11,7 @@ profile = Profile.create(:username => "pumpkin", :location=> "new jersey", :bio 
 
 Topic.create(:user_id => user.id, :title => "mytopic", :content => "none")
 Profile.create(:user_id => user.id)
+
+Tag.create(:description => "neighborhoods")
+Tag.create(:description => "discussing with others")
+Tag.create(:description => "apartment complexes")

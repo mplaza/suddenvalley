@@ -9,10 +9,11 @@ class TopicsController < ApplicationController
 
   def new
     @topic = Topic.new
+    @tags = Tag.all
   end
 
   def create
-    @topic = Topic.create(params.require(:topic).permit(:title, :content, :user_id))
+    @topic = Topic.create(params.require(:topic).permit(:title, :content, :user_id, :tag_id))
     if @topic.save
       redirect_to topics_path
     else render 'new'
@@ -25,7 +26,7 @@ class TopicsController < ApplicationController
 
   def update
     @topic = Topic.find(params[:id])
-    if @topic.update(params.require(:topic).permit(:title, :content, :user_id))
+    if @topic.update(params.require(:topic).permit(:title, :content, :user_id, :tag_id))
       redirect_to topics_path
     else
       render 'edit'
@@ -36,7 +37,7 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
     @posts = Post.where(:topic_id => @topic.id).where(:created_at.gte => (Date.today - 5)).sort_by{|post| post.postvotes.size }.reverse
     @votes = Vote.where(:topic_id => @topic.id)
-    
+    @tags = Tag.where(:id => @topic.tag_id)
   end
 
   def destroy
