@@ -1,0 +1,6 @@
+<h1>Topics about <%= @tag.description %></h1>
+<% @topics.each do |t| %>
+	<h3><%= t.title %></h3>
+	<p><%= t.content %></p>
+	<br></br>
+<% end %>
