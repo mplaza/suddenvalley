@@ -10,5 +10,5 @@ user = User.create(:email => "someone@something.com", :password => "123455")
 topic = Topic.create(:title => "mytopic", :content => "none")
 profile = Profile.create(:username => "pumpkin", :location=> "new jersey", :bio => "eh")
 
-Topic.create(user_id: user.id, topic_id: topic.id)
-Profile.create(:user_id: user.id)
+Topic.create(:user_id => user.id, :topic_id =>topic.id)
+Profile.create(:user_id => user.id)
