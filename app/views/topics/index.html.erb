@@ -1,4 +1,23 @@
-<h1> Threads </h1>
+<input type="button" id="btnTrend" class ="btn btn-default",  value="What's Trending" />
+
+<input type="button" id="btnNew" class ="btn btn-default", value="What's New" />
+<br></br>
+
+<script>
+
+  document.getElementById("btnNew").onclick = function(){
+    currentUrl = location.href;
+    qsIdx = currentUrl.indexOf("?");
+    new_sorting = true;
+    location.href=currentUrl.substring(0, qsIdx) + "?new_sorting=" + new_sorting;
+  };
+   document.getElementById("btnTrend").onclick = function(){
+    currentUrl = location.href;
+    qsIdx = currentUrl.indexOf("?");
+    new_sorting = false;
+    location.href=currentUrl.substring(0, qsIdx) + "?new_sorting=" + new_sorting;
+  };
+</script>
 
 <% @topics.each do |t| %>
 	<p> <%= link_to t.title, topic_path(t) %>

@@ -1,6 +1,10 @@
 class TopicsController < ApplicationController
   def index
-    @topics = Topic.where(:created_at.gte => (Date.today - 5)).sort_by{|topic| topic.votes.size }.reverse
+    if params[:new_sorting] == "true"
+      @topics = Topic.desc(:created_at)
+    else 
+      @topics = Topic.where(:created_at.gte => (Date.today - 5)).sort_by{|topic| topic.votes.size }.reverse
+    end
   end
 
   def new

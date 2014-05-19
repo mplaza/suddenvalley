@@ -1,6 +1,6 @@
 <p><h1><%= @topic.title %> 
 	<small><small><%= @votes.count %> points</small>
-	<%= link_to upvote_topic_path(@topic),:class =>"btn btn-xs btn-primary", method: :post do%>
+	<%= link_to upvote_topic_path(@topic),:class =>"btn btn-sm btn-primary", method: :post do%>
 		<span class="glyphicon glyphicon-thumbs-up"></span>
 	<% end %></small>
 	</h1>
@@ -16,11 +16,11 @@
 <% else %>
 <% @posts.each do |tt| %>
 	<p><% @postvote = Postvote.where(:post_id => tt.id) %>
-	<h4><%= tt.title %> 
-		<small><%= @postvote.count %> points <%= link_to upvote_topic_post_path(@topic, tt),:class =>"btn btn-xs btn-primary", method: :post do%>
+	<h4><%= tt.title %>  <small><small><%= @postvote.count %> points <%= link_to upvote_topic_post_path(@topic, tt),:class =>"btn btn-xs btn-primary", method: :post do%>
 			<span class="glyphicon glyphicon-thumbs-up"></span>
-		<% end %>
+			<% end %></small>
 	<br />
+	by 
 	<% if Profile.where(:user_id => tt.user_id)[0] != nil %>
 		<% @username = Profile.where(:user_id => tt.user_id)[0].username %>
 		<% @prof_id = Profile.where(:user_id => tt.user_id)[0].id %>
