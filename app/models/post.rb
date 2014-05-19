@@ -5,6 +5,6 @@ class Post
   field :content, type: String
   belongs_to :topic
   belongs_to :user
-
-  validates_presence_of :title, :content
+  has_many :postvotes
+  validates_presence_of :content
 end

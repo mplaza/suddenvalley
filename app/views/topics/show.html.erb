@@ -1,28 +1,69 @@
-<h1><%= @topic.title %> (<%= @topic.posts.count %>) </h1> 
+<h1><%= @topic.title %> 
+	<small><small><%= @votes.count %> points</small>
+	<%= link_to upvote_topic_path(@topic),:class =>"btn btn-xs btn-primary", method: :post do%>
+		<span class="glyphicon glyphicon-thumbs-up"></span>
+	<% end %></small>
+	</h1>
 
+<h4><%= @topic.content %>
+
+
+<h3> comments <small>(<%= @topic.posts.count %>)</small></h3>
+<% if @posts.count <1 %>
+<p> be the first to comment on this story </p>
+<% else %>
 <% @posts.each do |tt| %>
-	<h4><%= tt.title %></h4> 
+	<% @postvote = Postvote.where(:post_id => tt.id) %>
+	<h4><%= tt.title %> 
+		<small><%= @postvote.count %> points <%= link_to upvote_topic_post_path(@topic, tt),:class =>"btn btn-xs btn-primary", method: :post do%>
+			<span class="glyphicon glyphicon-thumbs-up"></span>
+		<% end %>
+	</h4> 
+	<small>
 	<% if Profile.where(:user_id => tt.user_id)[0] != nil %>
 		<% @username = Profile.where(:user_id => tt.user_id)[0].username %>
 		<% @prof_id = Profile.where(:user_id => tt.user_id)[0].id %>
 	<% else %>
 		<% @username = 'anonymous' %>
 	<% end %>
-		<% if Profile.where(:user_id => tt.user_id)[0] != nil %>
+	<% if Profile.where(:user_id => tt.user_id)[0] != nil %>
 		<%= link_to profile_path(@prof_id) do%> 
 			<%= @username %>
 		<% end %>
 	<% else %>
 		<%= @username %>
-	<% end %>: 
-	<%= tt.content %>
+	<% end %> 
+	<% if Time.new.utc.year == tt.created_at.to_s.split(/[^0-9]+/)[0].to_i%>
+			<% if Time.new.utc.month == tt.created_at.to_s.split(/[^0-9]+/)[1].to_i %>
+				<% if Time.new.utc.day == tt.created_at.to_s.split(/[^0-9]+/)[2].to_i %>
+					<% if Time.new.utc.hour == tt.created_at.to_s.split(/[^0-9]+/)[3].to_i %>
+						<% if Time.new.utc.min == tt.created_at.to_s.split(/[^0-9]+/)[4].to_i %>
+						a few seconds ago
+						<% else %>
+						<%= Time.new.utc.min - tt.created_at.to_s.split(/[^0-9]+/)[4].to_i %> minutes ago
+						<% end %>
+					<% else %>
+						<%= Time.new.utc.hour - tt.created_at.to_s.split(/[^0-9]+/)[3].to_i %> hours ago
+					<% end %>
+				<% else %>
+					<%= Time.new.utc.day - tt.created_at.to_s.split(/[^0-9]+/)[2].to_i %> days ago
+				<% end %>
+			<% else %> <%= Time.new.utc.month - tt.created_at.to_s.split(/[^0-9]+/)[1].to_i %> months ago
+			<% end %>
+		<% else %>
+		<%= Time.new.utc.year - tt.created_at.to_s.split(/[^0-9]+/)[0].to_i %> years ago 
+		<% end %> 
+		</small>
+		<p><%= tt.content %></p>
 
 	<%= link_to 'details', topic_post_path(@topic, tt),:class =>"btn btn-info btn-xs"  %> 
+<% end %>
+<br />
 <% end %>
 
 
 
 <br /><br />
-<%= link_to 'new post', new_topic_post_path(@topic), :class =>"btn btn-success" %>
+<%= link_to 'new comment', new_topic_post_path(@topic), :class =>"btn btn-success" %>
 
 

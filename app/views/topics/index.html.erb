@@ -1,9 +1,51 @@
-<h1> Discussions </h1>
+<h1> Threads </h1>
 
 <% @topics.each do |t| %>
-	
-	<p> <%= link_to t.title, topic_path(t) %> posts: <%= t.posts.count %> </p>
+	<p> <%= link_to t.title, topic_path(t) %>
+	<% @votes = Vote.where(:topic_id => t.id) %>
+	<%= @votes.count %> votes</p>
+	<p> <%= t.posts.count %> comments
+		posted by
+		<% if Profile.where(:user_id => t.user_id)[0] != nil %>
+			<% @username = Profile.where(:user_id => t.user_id)[0].username %>
+			<% @prof_id = Profile.where(:user_id => t.user_id)[0].id %>
+		<% else %>
+			<% @username = 'anonymous' %>
+		<% end %>
+		<% if Profile.where(:user_id => t.user_id)[0] != nil %>
+			<%= link_to profile_path(@prof_id) do%> 
+				<%= @username %>
+			<% end %>
+		<% else %>
+			<%= @username %>
+		<% end %> 
+		<% if Time.new.utc.year == t.created_at.to_s.split(/[^0-9]+/)[0].to_i%>
+			<% if Time.new.utc.month == t.created_at.to_s.split(/[^0-9]+/)[1].to_i %>
+				<% if Time.new.utc.day == t.created_at.to_s.split(/[^0-9]+/)[2].to_i %>
+					<% if Time.new.utc.hour == t.created_at.to_s.split(/[^0-9]+/)[3].to_i %>
+						<% if Time.new.utc.min == t.created_at.to_s.split(/[^0-9]+/)[4].to_i %>
+						a few seconds ago
+						<% else %>
+						<%= Time.new.utc.min - t.created_at.to_s.split(/[^0-9]+/)[4].to_i %> minutes ago
+						<% end %>
+					<% else %>
+						<%= Time.new.utc.hour - t.created_at.to_s.split(/[^0-9]+/)[3].to_i %> hours ago
+					<% end %>
+				<% else %>
+					<%= Time.new.utc.day - t.created_at.to_s.split(/[^0-9]+/)[2].to_i %> days ago
+				<% end %>
+			<% else %> <%= Time.new.utc.month - t.created_at.to_s.split(/[^0-9]+/)[1].to_i %> months ago
+			<% end %>
+		<% else %>
+			<% if t.created_at != nil %>
+				<%= Time.new.utc.year - t.created_at.to_s.split(/[^0-9]+/)[0].to_i %> years ago 
+			<% else %>
+				who knows when
+			<% end %>
+		<% end %> 
+	</p>
+<br />
 <% end %>
 <br /> <br />
 
-<%= link_to 'new topic', new_topic_path, :class =>"btn btn-success" %>
+<%= link_to 'new thread', new_topic_path, :class =>"btn btn-success" %>

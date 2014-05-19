@@ -1,6 +1,13 @@
 SuddenValleyApp::Application.routes.draw do
   resources :topics do
-    resources :posts
+    resources :posts do
+      member do
+        post 'upvote'
+      end
+    end
+    member do
+      post 'upvote'
+    end
   end
   resources :users, only: [:new, :create]
   resource :sessions, only: [:new, :create, :destroy]

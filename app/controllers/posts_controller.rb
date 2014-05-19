@@ -66,5 +66,11 @@ before_action :check_right_user, :only =>[:edit, :destroy]
       redirect_to topics_path
     end
   end
+  def upvote
+    @topic = Topic.find(params[:topic_id])
+    @post = Post.find(params[:id])
+    @post.postvotes.create
+    redirect_to topic_path(@topic)
+  end
 
 end
