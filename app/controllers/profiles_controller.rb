@@ -10,7 +10,7 @@ class ProfilesController < ApplicationController
   	@profile = Profile.create(params.require(:profile).permit(:username, :location, :bio, :user_id, :image))
   	if @profile.save
   		flash[:success] = "Profile successfully created"
-  		redirect_to topics_path
+  		redirect_to profile_path(@profile[0].id)
   	else
   		render 'new'
   	end
@@ -32,7 +32,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.where(:user_id => @current_user.id)
     if @profile.update(params.require(:profile).permit(:username, :location, :bio, :user_id, :image))
       flash[:success] = "Your profile was successfully updated"
-      redirect_to topics_path
+      redirect_to profile_path(@profile[0].id)
     else 
       render 'new'
     end
