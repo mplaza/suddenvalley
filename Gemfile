@@ -6,7 +6,7 @@ gem 'mongoid', github: 'mongoid/mongoid'
 gem 'genghis', '~> 1.4.1'
 gem 'rails_12factor'
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
-gem 'aws-sdk', :require => "aws-sdk"
+gem 'aws-sdk'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
@@ -33,8 +33,6 @@ gem 'jbuilder', '~> 1.2'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
-
-gem 'mongoid-paperclip', :require => 'mongoid_paperclip'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
