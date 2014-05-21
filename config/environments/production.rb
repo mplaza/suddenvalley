@@ -79,12 +79,5 @@ SuddenValleyApp::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # config/environments/production.rb
-  config.paperclip_defaults = {
-    :storage => :s3,
-    :s3_credentials => {
-      :bucket => ENV['pedobook'],
-      :access_key_id => ENV['AKIAIZC6VVPMIKUE57CQ'],
-      :secret_access_key => ENV['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']
-  }
-}
+
 end
