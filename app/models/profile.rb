@@ -14,8 +14,8 @@ class Profile
   field :location, type: String
   field :bio, type: String
   belongs_to :user
-  has_mongoid_attached_file :image,
+  has_mongoid_attached_file :avatar,
   	:default_url => ActionController::Base.helpers.asset_path('pedo_fam_guy.jpeg')
 
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 end
