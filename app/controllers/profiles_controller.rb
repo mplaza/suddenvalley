@@ -10,7 +10,7 @@ class ProfilesController < ApplicationController
   	@profile = Profile.create(params.require(:profile).permit(:username, :location, :bio, :user_id))
   	if @profile.save
   		flash[:success] = "Profile successfully created"
-  		redirect_to profile_path(@profile[0].id)
+  		redirect_to profile_path(@profile.id)
   	else
   		render 'new'
   	end
