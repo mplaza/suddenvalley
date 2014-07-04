@@ -1,6 +1,5 @@
 class Profile
   include Mongoid::Document
-  include Mongoid::Paperclip
   # Include this after_commit so that paperclip doesn't freak out
   def self.after_commit(*args, &block)
      args.each do |arg|
@@ -14,8 +13,5 @@ class Profile
   field :location, type: String
   field :bio, type: String
   belongs_to :user
-  has_mongoid_attached_file :avatar,
-  	:default_url => ActionController::Base.helpers.asset_path('pedo_fam_guy.jpeg')
 
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 end
